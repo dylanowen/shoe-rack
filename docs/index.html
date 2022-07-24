@@ -8,27 +8,45 @@
    <script src="libs/GLTFLoader.js"></script>
    <script src="libs/OrbitControls.js"></script>
    <style type="text/css">
-      body {
-         padding: 0;
-         margin: 0;
-      }
+body {
+   padding: 0;
+   margin: 0;
+   text-align: center;
+   font-family: monospace;
+}
+.container {
+   width: 100%;
+   margin: 0 auto;
+}
    </style>
 </head>
 <body>
+<div class="container">
+   <h1>Shoe Rack</h1>
+   <a href="https://github.com/dylanowen/shoe-rack">GitHub</a>
+   <br />
+   <br />
+   <div id="gltfView" />
+<div>
+
 <script type="text/javascript">
 // https://redstapler.co/add-3d-model-to-website-threejs/
+const gltfView = document.getElementById('gltfView');
+const width = gltfView.clientWidth;
+const height = window.innerHeight * .9;
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xdddddd);
 
-const camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
-camera.rotation.y = 45/180*Math.PI;
+const camera = new THREE.PerspectiveCamera(40, width / height, 1, 5000);
+camera.rotation.y = 45 / 180 * Math.PI;
 camera.position.x = 800;
 camera.position.y = 100;
 camera.position.z = 1000;
 
 const renderer = new THREE.WebGLRenderer({ antialias:true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+renderer.setSize(width, height);
+gltfView.appendChild(renderer.domElement);
 
 const hlight = new THREE.AmbientLight (0x404040,100);
 scene.add(hlight);
